@@ -2,7 +2,7 @@
 
 My name is McKenzie Tang and I'm currently a third-year Computer Science student studying at the University of Southern California with an anticipated graduation date of May 2028. 
 
-I'm currently working on a social studying full-stack app, where students can hold fun wagers with their friends to motivate them to hit all kinds of academic goals. I'm currently working on the feed system and building the overall skeleton of the app. I'm using React, Node.js/Express, PostgreSQL, and Cloudinary to build this!
+I'm currently working on a social studying full-stack app, where students can hold fun wagers with their friends to motivate them to hit all kinds of academic goals. I'm currently working on the feed system and building the overall skeleton of the app. I'm using React, Node.js/Express, PostgreSQL, and Cloudinary to build this! You can check out my repo here: https://github.com/mckenziebtang/studystakes
 
 Previously, I was working on another full-stack app, which you can check out at https://spill-the-matcha.onrender.com. Spill the Matcha combines my love of matchas in LA and programming to create a matcha rating app that utilizes Google Maps API and filters. I used React, Node.js/Express, and PostgreSQL to implement it. 
 
