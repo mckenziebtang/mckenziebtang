@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>McKenzie Tang | Software Engineer</title>
+  <meta name="description" content="McKenzie Tang's one-page portfolio for SWE internships." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f5f3;
+      --panel: #ffffff;
+      --panel-soft: #fbfbfa;
+      --text: #1f1f1f;
+      --muted: #666872;
+      --border: #e3e3df;
+      --shadow: 0 1px 0 rgba(255,255,255,.8) inset, 0 10px 30px rgba(26, 26, 26, 0.04);
+      --chip: #f3f3f1;
+      --chip-text: #4d4f57;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #f7f7f6 0%, var(--bg) 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container {
+      width: min(1960px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 20px 0 30px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .grid-bottom {
+      display: grid;
+      grid-template-columns: 1.45fr 0.55fr;
+      gap: 14px;
+      margin-top: 14px;
+      align-items: start;
+    }
+
+    .card {
+      background: rgba(255,255,255,.84);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero {
+      padding: 34px 34px 28px;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #7a7d88;
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.7rem, 4.6vw, 4.95rem);
+      line-height: 1.02;
+      letter-spacing: -0.08em;
+      font-weight: 800;
+    }
+
+    .role {
+      margin-top: 14px;
+      font-size: clamp(1.1rem, 1.45vw, 1.55rem);
+      line-height: 1.35;
+      color: #5e616b;
+      letter-spacing: -0.03em;
+      font-weight: 500;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 17px;
+      border-radius: 11px;
+      border: 1px solid #d5d6d2;
+      background: var(--panel);
+      font-weight: 600;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(0,0,0,.05);
+      border-color: #c9cbc6;
+    }
+
+    .button.dark {
+      background: #202124;
+      color: #fff;
+      border-color: #202124;
+    }
+
+    .button.dark:hover { background: #111214; }
+
+    .divider {
+      height: 1px;
+      background: #e7e7e2;
+      margin: 48px 0 24px;
+    }
+
+    .bio {
+      max-width: 980px;
+      color: #4f525c;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      letter-spacing: -0.02em;
+      margin-bottom: 22px;
+    }
+
+    .section-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #8a8d96;
+      margin: 0 0 14px;
+      font-weight: 600;
+    }
+
+    .selected-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .project-item {
+      border: 1px solid #ededea;
+      border-radius: 12px;
+      background: var(--panel-soft);
+      overflow: hidden;
+    }
+
+    .selected-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 14px;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .selected-item::-webkit-details-marker { display: none; }
+
+    .selected-item strong {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.98rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 3px;
+    }
+
+    .selected-item span.meta {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .selected-item .arrow {
+      color: #a0a3ad;
+      font-size: 1.1rem;
+      flex: 0 0 auto;
+      transition: transform .18s ease;
+    }
+
+    .project-item[open] .arrow { transform: rotate(90deg); }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #fdf1dd;
+      border: 1px solid #f2ddb0;
+      color: #9a6a12;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      line-height: 1.6;
+    }
+
+    .status-badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #d99a2b;
+    }
+
+    .project-desc {
+      padding: 0 14px 16px 14px;
+      color: #555862;
+      line-height: 1.7;
+      font-size: 0.93rem;
+      border-top: 1px solid #ededea;
+      margin-top: -2px;
+      padding-top: 12px;
+    }
+
+    .project-desc ul {
+      margin: 0;
+      padding-left: 18px;
+      list-style-position: outside;
+    }
+
+    .project-desc li {
+      margin-bottom: 6px;
+    }
+
+    .project-desc li:last-child {
+      margin-bottom: 0;
+    }
+
+    .panel {
+      padding: 26px 26px 22px;
+    }
+
+    .skills-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .skill-group h4 {
+      margin: 0 0 10px;
+      color: #a1a3ad;
+      font-size: 0.74rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      padding: 9px 12px;
+      border-radius: 10px;
+      background: var(--chip);
+      border: 1px solid #ececea;
+      color: var(--chip-text);
+      font-size: 0.95rem;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .experience-card {
+      padding: 26px;
+      min-height: 100%;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 0;
+      margin-top: 8px;
+      border-top: 1px solid #ecece8;
+    }
+
+    details {
+      border-bottom: 1px solid #ecece8;
+      padding: 0;
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 24px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 18px 0;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    .bullet {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #d7d9df;
+      margin-left: 5px;
+    }
+
+    .exp-title {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: #2a2c33;
+    }
+
+    .exp-meta {
+      margin-top: 4px;
+      color: #787b85;
+      font-size: 0.93rem;
+    }
+
+    .chev {
+      color: #a0a3ad;
+      font-size: 1rem;
+      transition: transform .18s ease;
+    }
+
+    details[open] .chev { transform: rotate(90deg); }
+
+    .exp-body {
+      padding: 0 0 18px 36px;
+      color: #555862;
+      line-height: 1.7;
+      font-size: 0.98rem;
+    }
+
+    .contact-card {
+      padding: 26px;
+      min-height: 100%;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      color: #4f525c;
+      font-size: 0.98rem;
+    }
+
+    .icon {
+      width: 24px;
+      height: 24px;
+      display: inline-grid;
+      place-items: center;
+      color: #7b7f88;
+      flex: 0 0 auto;
+      font-size: 0.95rem;
+    }
+
+    .contact-note {
+      border-top: 1px solid #ecece8;
+      margin-top: 22px;
+      padding-top: 18px;
+      color: #5a5d67;
+      line-height: 1.8;
+      font-size: 0.98rem;
+    }
+
+    .subtle-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .info-card {
+      padding: 18px 20px;
+      border: 1px solid #ecece8;
+      border-radius: 14px;
+      background: #fafaf8;
+    }
+
+    .info-card h4 {
+      margin: 0 0 8px;
+      font-size: 0.76rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #9a9ca6;
+    }
+
+    .info-card p { margin: 0; color: #52555f; line-height: 1.7; }
+
+    .footer {
+      margin-top: 14px;
+      color: #8d9098;
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 4px 2px 0;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1120px) {
+      .grid, .grid-bottom { grid-template-columns: 1fr; }
+      .subtle-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 760px) {
+      .container { width: min(100%, calc(100% - 24px)); }
+      .hero, .panel, .experience-card, .contact-card { padding: 20px; }
+      h1 { font-size: clamp(2.4rem, 12vw, 3.6rem); }
+      .role { font-size: 1.05rem; }
+      .bio { font-size: 1rem; }
+      summary { grid-template-columns: 20px 1fr auto; }
+      .exp-body { padding-left: 32px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="grid">
+      <article class="card hero reveal">
+        <div class="eyebrow">Welcome!</div>
+        <h1>Hi, I am McKenzie Tang 👋</h1>
+        <div class="role">Software Engineer (ML, Full Stack, Python)</div>
+
+        <div class="actions">
+          <a class="button dark" href="https://github.com/mckenziebtang" target="_blank" rel="noreferrer">GitHub Profile</a>
+          <a class="button" href= "https://drive.google.com/file/d/1cvCntBt_2rd20N-a6xuAZy9nwfTeTcgh/view?usp=sharing" target="_blank" rel="noreferrer">Resume</a>
+        </div>
+
+        <div class="divider"></div>
+
+        <p class="bio">
+          I'm a third-year Computer Science student at the University of Southern California with an interest in applying AI and 
+          problem-solving to develop meaningful apps and agents that solve real-world issues. With experience in both full-stack development and AI/ML research,
+          I'm excited to continue building impactful software while collaborating with teams that value innovation and impact.
+        </p>
+
+        <div class="section-label">Selected Projects</div>
+        <div class="selected-list">
+          <details class="project-item">
+            <summary class="selected-item">
+              <div>
+                <strong>Cancer Drug Response Prediction <span class="status-badge">In Progress</span></strong>
+                <span class="meta">Python, PyTorch, TensorFlow, XGBoost</span>
+              </div>
+              <div class="arrow">›</div>
+            </summary>
+            <div class="project-desc">
+              <ul>
+                <li>Currently working on training a machine learning model that can predict drug reactions with certain strands of cancerous cells.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="project-item">
+            <summary class="selected-item">
+              <div>
+                <strong>Spill the Matcha</strong>
+                <span class="meta">React, Node.js, Express, PostgreSQL</span>
+              </div>
+              <div class="arrow">›</div>
+            </summary>
+            <div class="project-desc">
+              <ul>
+                <li>Full-stack platform that allows users to discover, rate, and rank matcha cafes throughout the Los Angeles area.</li>
+                <li>Users can use multiple filters to find cafes that fit their preferences perfectly.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="project-item">
+            <summary class="selected-item">
+              <div>
+                <strong>StudyStakes <span class="status-badge">In Progress</span></strong>
+                <span class="meta">React, Node.js, JWT, Cloudinary, SQL</span>
+              </div>
+              <div class="arrow">›</div>
+            </summary>
+            <div class="project-desc">
+              <ul>
+                <li>Full-stack platform that uses fun stakes and wagers between friends in order to motivate students into reaching their academic goals.</li>
+                <li>Currently implementing a login and user authentication system. Also currently working on allowing users to upload photos.</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </article>
+
+      <aside class="card panel reveal">
+        <div class="section-label">Skills</div>
+        <div class="skills-grid">
+          <div class="skill-group">
+            <h4>Programming Languages</h4>
+            <div class="chips">
+              <span class="chip">Python</span>
+              <span class="chip">C</span>
+              <span class="chip">Go</span>
+              <span class="chip">Node.js</span>
+              <span class="chip">C++</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <h4>Backend & Data</h4>
+            <div class="chips">
+              <span class="chip">SQL</span>
+              <span class="chip">PostgreSQL</span>
+              <span class="chip">Express</span>
+              <span class="chip">REST APIs</span>
+              <span class="chip">JWT</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <h4>Frontend</h4>
+            <div class="chips">
+              <span class="chip">React</span>
+              <span class="chip">HTML</span>
+              <span class="chip">CSS</span>
+              <span class="chip">JavaScript</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <h4>ML & Tools</h4>
+            <div class="chips">
+              <span class="chip">PyTorch</span>
+              <span class="chip">TensorFlow</span>
+              <span class="chip">Git</span>
+              <span class="chip">Cloudinary</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="grid-bottom">
+      <article class="card experience-card reveal">
+        <div class="section-label">Experience</div>
+        <div class="timeline">
+          <details open>
+            <summary>
+              <span class="bullet"></span>
+              <div>
+                <div class="exp-title">AI/ML Undergraduate Researcher - AI For Medical Radiology Lab</div>
+                <div class="exp-meta">Aug 2025 - May 2026</div>
+              </div>
+              <span class="chev">›</span>
+            </summary>
+            <div class="exp-body">
+              <li>Analyzed brain MRI scans using OsiriX to identify hippocampus atrophy and lesion patterns associated with multiple sclerosis.</li>
+              <li>Built Python preprocessing pipelines for neuroimaging datasets and implemented PyTorch models to detect hippocampal lesions.</li>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span class="bullet"></span>
+              <div>
+                <div class="exp-title">Incoming Teaching Assistant - USC Technology and Applied Computing</div>
+                <div class="exp-meta">May 2026 - Present</div>
+              </div>
+              <span class="chev">›</span>
+            </summary>
+            <div class="exp-body">
+              <li>Incoming TA for TAC-115: Introduction to Python.</li>
+            </div>
+          </details>
+
+
+          <details>
+            <summary>
+              <span class="bullet"></span>
+              <div>
+                <div class="exp-title">Software Instructor & Code Coach - theCoderSchool</div>
+                <div class="exp-meta">May 2026 - Present</div>
+              </div>
+              <span class="chev">›</span>
+            </summary>
+            <div class="exp-body">
+              <li>Designed and delivered hands-on coding curriculum across Python, JavaScript, HTML/CSS, and C++ for both one-on-one and small-group settings.</li>
+              <li>Guided students through lessons in REST APIs, responsive layouts, DOM manipulation, Git, and modular software design.</li>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span class="bullet"></span>
+              <div>
+                <div class="exp-title">Advanced Tutor - StepUp Tutor</div>
+                <div class="exp-meta">Aug 2025 - May 2026</div>
+              </div>
+              <span class="chev">›</span>
+            </summary>
+            <div class="exp-body">
+              <li>Tutored K-8 students in math and literacy through personalized, one-on-one instruction and interactive activities</li>
+              <li>Improved literacy and math proficiency by 15% within 6 months of instruction.</li>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span class="bullet"></span>
+              <div>
+                <div class="exp-title">Education - University of Southern California</div>
+                <div class="exp-meta">B.S. Computer Science, May 2028</div>
+              </div>
+              <span class="chev">›</span>
+            </summary>
+            <div class="exp-body">
+              Relevant coursework: Data Structures and Algorithms, Full-Stack Development, Object-Oriented Programming (C++),
+              Embedded Systems, Discrete Math, Probability Theory, Linear Algebra, and Calculus III.
+            </div>
+          </details>
+        </div>
+      </article>
+
+      <aside class="card contact-card reveal">
+        <div class="section-label">Contact & Socials</div>
+        <div class="contact-list">
+          <div class="contact-item"><span class="icon">gh</span><a href="https://github.com/mckenziebtang" target="_blank" rel="noreferrer">github.com/mckenziebtang</a></div>
+          <div class="contact-item"><span class="icon">in</span><a href="https://www.linkedin.com/in/mckenziebtang" target="_blank" rel="noreferrer">say hi!</a></div>
+          <div class="contact-item"><span class="icon">@</span><a href="mailto:mbtang@usc.edu">mbtang@usc.edu</a></div>
+          <div class="contact-item"><span class="icon">loc</span><span>Atlanta, GA and Los Angeles, CA</span></div>
+        </div>
+
+        <div class="contact-note">
+          In my free time, you can catch me using my Netflix subscription to the max, trying new resturants in LA/GA, and beating my newest BlockBlast high score (1,280,754)!
+        </div>
+
+        <div class="subtle-grid">
+          <div class="info-card">
+            <h4>Focus</h4>
+            <p>Full-stack products, ML pipelines, and developer-friendly tooling.</p>
+          </div>
+          <div class="info-card">
+            <h4>Status</h4>
+            <p>Available for SWE internship opportunities.</p>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+  </div>
+
+  <script>
+    const items = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.08 });
+    items.forEach((item) => observer.observe(item));
+  </script>
+</body>
+</html>
